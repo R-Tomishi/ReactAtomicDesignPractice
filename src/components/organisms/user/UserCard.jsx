@@ -1,23 +1,35 @@
-export const UserCard = () => {
+import styled from "styled-components";
+import { Card } from "../../atoms/card/card";
+import { UserIConWithName } from "../../molecules/user/UserIconWithName";
+
+export const UserCard = (props) => {
+  const { user } = props;
   return (
-    <div>
-      <img
-        height={160}
-        width={160}
-        src="https://unsplash.com/photos/NE0XGVKTmcA/download?ixid=MnwxMjA3fDB8MXxzZWFyY2h8N3x8ZG9nfGVufDB8fHx8MTY0ODc1NzkwMw&force=true"
-        alt="プロフィール"
-      />
-      <p>名前</p>
-      <dl>
+    <Card>
+      <UserIConWithName image={user.image} name={user.name} />
+      <SDl>
         <dt>メール</dt>
-        <dd>1111@aaa.com</dd>
+        <dd>{user.email}</dd>
         <dt>TEL</dt>
-        <dd>000-9999-8888</dd>
+        <dd>{user.phone}</dd>
         <dt>会社名</dt>
-        <dd>ああああ会社</dd>
+        <dd>{user.company.name}</dd>
         <dt>WEB</dt>
-        <dd>htttttt.com</dd>
-      </dl>
-    </div>
+        <dd>{user.website}</dd>
+      </SDl>
+    </Card>
   );
 };
+
+const SDl = styled.dl`
+  text-align: left;
+  margin-bottom: 0px;
+  dt {
+    float: left;
+  }
+  dd {
+    padding-left: 32px;
+    padding-bottom: 8px;
+    overflow-wrap: break-word;
+  }
+`;
